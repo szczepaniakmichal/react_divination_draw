@@ -5,7 +5,7 @@ class App extends React.Component {
         super(props);
         this.state = {
             draws: ["wróżba 1", "wróżba 2", "wróżba 3"],
-            draw: '',
+            draw: null,
             addNewDraw: '',
         };
     }
@@ -19,7 +19,7 @@ class App extends React.Component {
     };
 
     handleAddDrawClick = () => {
-        this.setState( prevState => {
+        this.setState(prevState => {
             const draws = prevState.draws.concat(this.state.addNewDraw);
 
             return {
@@ -36,6 +36,7 @@ class App extends React.Component {
     };
 
     render() {
+        const { draw, addNewDraw } = this.state;
 
         return (
             <React.Fragment>
@@ -50,10 +51,10 @@ class App extends React.Component {
                 />
                 <button
                     onClick={this.handleAddDrawClick}
-                    value={this.state.addNewDraw}
+                    value={addNewDraw}
                 >dodaj wróżbę
                 </button>
-                <h3>{this.state.draw}</h3>
+                {draw ? <h3>{draw}</h3> : null}
             </React.Fragment>
         )
     }
